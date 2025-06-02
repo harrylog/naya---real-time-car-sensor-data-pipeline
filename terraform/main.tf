@@ -19,3 +19,25 @@ module "emr" {
   project_name = var.project_name
   bucket_name  = aws_s3_bucket.spark_data.bucket
 }
+
+# MSK Module
+module "msk" {
+  source = "./modules/msk"
+
+  project_name = var.project_name
+  environment  = var.environment
+  aws_region   = var.aws_region
+  
+  tags = var.tags
+}
+
+# Output MSK connection info for easy access
+output "msk_connection_info" {
+  description = "MSK cluster connection information"
+  value = {
+    cluster_name      = module.msk.cluster_name
+    bootstrap_servers = module.msk.bootstrap_brokers
+    topics_needed     = ["sensors-sample", "samples-enriched", "alert-data"]
+  }
+  sensitive = false
+}
