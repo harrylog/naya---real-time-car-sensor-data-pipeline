@@ -142,131 +142,32 @@ terraform apply -target=module.emr
 
 ---
 
-### ✅ Stage 3: MSK (Kafka) Setup & Data Streaming (Completed)
+### 🔄 Stage 3: MSK (Kafka) Setup (Planned)
 **Duration**: Day 2  
-**Objective**: Set up managed Kafka and implement real-time data streaming
+**Objective**: Set up managed Kafka for real-time streaming
 
-**What was built:**
-- **MSK Cluster**: Cost-optimized Kafka cluster via Terraform module
-- **Kafka Topics**: Auto-created topics for data pipeline
-- **Data Generator**: Real-time streaming PySpark application
-- **Network Integration**: EMR-MSK connectivity in shared VPC
-
-**Infrastructure Created:**
-```
-terraform/modules/msk/
-├── main.tf              # MSK cluster and security groups
-├── variables.tf         # MSK-specific variables
-└── outputs.tf          # Kafka connection endpoints
-```
-
-**MSK Configuration:**
-- **Instance Type**: kafka.t3.small (cost-optimized)
-- **Brokers**: 2 (minimum required)
-- **Storage**: 10GB EBS per broker
-- **Encryption**: TLS_PLAINTEXT (learning-friendly)
-- **Monitoring**: Minimal CloudWatch logs only
-
-**Technical Challenges Solved:**
-1. **VPC Discovery**: Aligned MSK to use same VPC selection logic as EMR
-2. **Subnet Requirements**: MSK needs 2+ subnets across different AZs
-3. **Network Connectivity**: SSH timeouts led to adoption of EMR Steps approach
-4. **Cost Optimization**: Minimal instance sizes and short log retention
-
-**Kafka Topics Created:**
-- `sensors-sample`: Raw sensor data from cars
-- `samples-enriched`: Enriched data with car details
-- `alert-data`: Filtered alerts for dangerous driving
-
-**EMR Steps Approach:**
-Due to network connectivity issues, adopted **EMR Steps** for job submission instead of SSH:
-```bash
-# Professional approach - no SSH required
-aws emr add-steps --cluster-id <cluster-id> --steps '[{
-  "Name": "DataGenerator",
-  "ActionOnFailure": "CONTINUE",
-  "Jar": "command-runner.jar",
-  "Args": ["spark-submit", "--packages", "...", "s3://bucket/script.py"]
-}]'
-```
-
-**Data Generator Implementation:**
-- **Script**: `data_generator.py`
-- **Function**: Continuous streaming producer
-- **Logic**: Read 20 cars from S3 → Generate sensor events → Send to Kafka
-- **Frequency**: 20 events per second (1 per car)
-- **Message Format**: JSON with event_id, timestamp, car_id, speed, rpm, gear
-
-**Sample Data Flow:**
-```json
-Input (S3): car_id,driver_id,model_id,color_id
-Output (Kafka): {
-  "event_id": "uuid-123",
-  "event_time": "2025-06-02T18:00:00Z",
-  "car_id": 8459042,
-  "speed": 169,
-  "rpm": 3717,
-  "gear": 1
-}
-```
-
-**Execution Results:**
-```bash
-# Step Status: RUNNING
-# Console Output: "📤 Iteration 1: Sent 20 events to sensors-sample"
-# Sample: Car 8459042 - Speed: 169, RPM: 3717, Gear: 1
-```
-
-**Network Architecture:**
-```
-Default VPC (vpc-050e39d9f042cfec8)
-├── EMR Cluster (ec2-54-211-249-251.compute-1.amazonaws.com)
-├── MSK Cluster (b-1.sparkkafkapipeline.pmia3t.c22.kafka.us-east-1.amazonaws.com)
-└── Security Groups: Allow 9092-9098, 2181 between services
-```
-
-**Cost Management:**
-```bash
-# Daily costs:
-# MSK: ~$2.16/day compute + $2.40/day storage = ~$4.56/day
-# EMR: ~$23/day when running
-# Combined: ~$27/day during development
-
-# Destroy expensive resources end of day:
-terraform destroy -target=module.emr -target=module.msk
-```
-
-**Key Technical Learnings:**
-1. **EMR Steps > SSH**: More professional, bypasses network issues
-2. **Kafka Connection String**: Format is critical for Spark-Kafka integration
-3. **Infinite Loops**: Continuous jobs block EMR step queue (sequential execution)
-4. **VPC Alignment**: Both services must use identical subnet discovery logic
-5. **Cost Optimization**: Smallest instance types still provide learning value
-
-**Debugging Approach:**
-- **AWS Console**: Best for viewing EMR step logs and status
-- **CloudWatch**: MSK and EMR logs available but optional
-- **Terraform Outputs**: Connection strings for script configuration
-
-**Pipeline Verification:**
-```bash
-# Successful indicators:
-✅ EMR Step: RUNNING status
-✅ Console logs: "Sent 20 events" messages  
-✅ Kafka topics: Auto-created by MSK
-✅ JSON format: Valid event structure
-```
-
-**Next Stage Preparation:**
-- ✅ Kafka topics ready for consumption
-- ✅ S3 dimension tables available for joins
-- ✅ EMR cluster capable of running multiple streaming jobs
-- 🔄 Ready for Data Enrichment pipeline
+**Planned Components:**
+- Amazon MSK cluster via Terraform
+- Kafka topics: `sensors-sample`, `samples-enriched`, `alert-data`
+- Network security configuration
+- Topic creation and management
 
 ---
 
-### 🔄 Stage 4: Data Enrichment Pipeline (Planned)
+### 🔄 Stage 4: Real-Time Data Generation (Planned)
 **Duration**: Day 3  
+**Objective**: Implement streaming data producer
+
+**Planned Components:**
+- PySpark Streaming job reading cars from S3
+- Generate sensor data every second per car
+- Publish to Kafka `sensors-sample` topic
+- JSON message format with timestamps
+
+---
+
+### 🔄 Stage 5: Data Enrichment Pipeline (Planned)
+**Duration**: Day 4  
 **Objective**: Enrich streaming data with dimension tables
 
 **Planned Components:**
@@ -277,8 +178,8 @@ terraform destroy -target=module.emr -target=module.msk
 
 ---
 
-### 🔄 Stage 5: Alert Detection System (Planned)
-**Duration**: Day 4  
+### 🔄 Stage 6: Alert Detection System (Planned)
+**Duration**: Day 5  
 **Objective**: Implement real-time anomaly detection
 
 **Planned Components:**
@@ -289,8 +190,8 @@ terraform destroy -target=module.emr -target=module.msk
 
 ---
 
-### 🔄 Stage 6: Monitoring & Visualization (Planned)
-**Duration**: Day 5  
+### 🔄 Stage 7: Monitoring & Visualization (Planned)
+**Duration**: Day 6  
 **Objective**: Real-time monitoring and final integration
 
 **Planned Components:**
@@ -313,12 +214,6 @@ terraform destroy -target=module.emr -target=module.msk
 - Seamless AWS integration
 - Auto-scaling and multi-AZ deployment
 
-### Why EMR Steps over SSH?
-- **Professional approach**: Production data engineering standard
-- **Network resilience**: Bypasses connectivity issues
-- **Better logging**: AWS-managed execution tracking
-- **Security**: No need for SSH key management
-
 ### Why Terraform?
 - Infrastructure as Code enables reproducible deployments
 - Modular approach allows selective resource management
@@ -339,50 +234,46 @@ terraform destroy -target=module.emr -target=module.msk
 git clone <repository-url>
 cd spark-kafka-pipeline
 
-# Deploy infrastructure
+# Deploy S3 infrastructure
 cd terraform
 terraform init
-terraform apply -target=module.emr -target=module.msk
+terraform apply
+
+# Deploy EMR cluster (when needed)
+terraform apply -target=module.emr
 
 # Verify deployment
-terraform output msk_connection_info
-terraform output emr_cluster_state
-
-# Upload and run data generator
-aws s3 cp src/data_generator.py s3://$(terraform output -raw bucket_name)/scripts/
-aws emr add-steps --cluster-id $(terraform output -raw emr_cluster_id) --steps '[...]'
+terraform output
+aws s3 ls s3://$(terraform output -raw bucket_name)/data/dims/ --recursive
 ```
 
 ## 💰 Cost Management
 
-**Daily Costs (Actual):**
+**Daily Costs (Estimated):**
 - S3 Storage: ~$0.01/day
 - EMR m5.xlarge: ~$23/day when running
-- MSK t3.small: ~$5/day when running
-- **Total**: ~$28/day during active development
+- MSK (planned): ~$11/day when running
 
 **Cost Optimization:**
 - Use targeted Terraform apply/destroy for expensive resources
 - Single-node EMR cluster for development
-- Smallest MSK instance types
-- Short Kafka log retention (1 hour)
+- Automated cleanup scripts
 
-**End of day cleanup:**
+**Destroy expensive resources:**
 ```bash
-terraform destroy -target=module.emr -target=module.msk
-# Saves ~$28/day, keeps S3 data intact
+terraform destroy -target=module.emr
+terraform destroy -target=module.msk  # When implemented
 ```
 
 ## 📈 Project Metrics
 
 **Current Status:**
-- ✅ Infrastructure modules: 3/3 complete (S3, EMR, MSK)
-- ✅ Data generation: Working (20 events/second)
-- ✅ Kafka streaming: Verified working
-- ✅ EMR-MSK integration: Successful
-- 🔄 Streaming pipeline: 1/4 components complete
+- ✅ Infrastructure modules: 2/7 complete
+- ✅ Data generation: Working
+- ✅ S3 integration: Working
+- 🔄 Streaming pipeline: 0/4 components
 
-**Next Milestone**: Data enrichment with dimension table joins
+**Next Milestone**: MSK setup and first streaming job
 
 ## 🤝 Submission Format
 
@@ -394,4 +285,4 @@ This project is designed for academic evaluation with multiple viewing options:
 
 ---
 
-*Last Updated: Day 2 - MSK & Data Streaming Complete*
+*Last Updated: Day 1 - EMR Stage Complete*
