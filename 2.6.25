@@ -1,0 +1,34 @@
+# Apply both modules (5 min EMR + 15 min MSK)
+terraform apply -target=module.emr -target=module.msk
+
+# Get new connection info (will be different)
+terraform output msk_connection_info
+terraform output emr_master_dns
+
+
+# Update data_generator.py with new Kafka servers
+# Update any other scripts with new connection details
+
+aws s3 cp data_generator.py s3://spark-kafka-pipeline-zn1fp2wf/scripts/
+# (S3 bucket persists, scripts stay there)
+
+# Continue with Data Enrichment stage
+
+
+Tomorrow's restart will be:
+
+terraform apply -target=module.emr -target=module.msk
+Get new connection info
+Continue with Data Enrichment stage
+
+For Your New Chat 💬
+Mention:
+
+✅ EMR + MSK infrastructure working
+✅ Data Generator successfully sending to Kafka
+✅ S3 dimension data ready
+🎯 Next: Data Enrichment stage (sensors-sample → samples-enriched)
+
+You've successfully completed the hardest part - infrastructure + data generation!
+The enrichment stage will be much smoother since you understand EMR Steps now! 🚀
+

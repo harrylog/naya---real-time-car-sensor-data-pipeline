@@ -71,7 +71,7 @@ def send_to_kafka(spark, events, kafka_servers, topic):
 def main():
     # Configuration - UPDATE THESE VALUES
     S3_CARS_PATH = "s3a://spark-kafka-pipeline-zn1fp2wf/data/dims/cars/"
-    KAFKA_SERVERS = "REPLACE_WITH_MSK_BOOTSTRAP_SERVERS"  # Will get from terraform output
+    KAFKA_SERVERS = "b-1.sparkkafkapipeline.pmia3t.c22.kafka.us-east-1.amazonaws.com:9092,b-2.sparkkafkapipeline.pmia3t.c22.kafka.us-east-1.amazonaws.com:9092"  # Will get from terraform output
     KAFKA_TOPIC = "sensors-sample"
     
     print("🚗 Starting Data Generator...")
