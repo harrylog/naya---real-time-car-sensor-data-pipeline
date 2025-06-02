@@ -32,3 +32,29 @@ Mention:
 You've successfully completed the hardest part - infrastructure + data generation!
 The enrichment stage will be much smoother since you understand EMR Steps now! 🚀
 
+Input/Output:
+
+Input: sensors-sample Kafka topic (your JSON events)
+Output: samples-enriched Kafka topic (enriched JSON)
+
+What it does:
+
+Reads sensor events from Kafka
+Joins with your S3 dimension tables (car_models, car_colors, cars)
+Adds: brand_name, model_name, color_name, driver_id
+Calculates: expected_gear = round(speed/30)
+Outputs enriched JSON to new topic
+
+
+**What I need for next chat:**
+
+Updated Kafka servers (will be different tomorrow)
+New EMR cluster ID (for step submission)
+Confirmation that your dimension tables are still in S3
+
+Input Example:
+json{"event_id":"123","car_id":1234567,"speed":85,"rpm":3200,"gear":3}
+Output Example:
+json{"event_id":"123","car_id":1234567,"speed":85,"rpm":3200,"gear":3,
+ "driver_id":987654321,"brand_name":"Toyota","model_name":"Corolla",
+ "color_name":"Red","expected_gear":3}
