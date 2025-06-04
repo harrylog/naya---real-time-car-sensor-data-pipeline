@@ -1,0 +1,102 @@
+:: loading settings :: url = jar:file:/usr/lib/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+🚗 Starting Data Generator...
+S3 Path: s3a://spark-kafka-pipeline-zn1fp2wf/data/dims/cars/
+Kafka Topic: sensors-sample
+Reading cars from: s3a://spark-kafka-pipeline-zn1fp2wf/data/dims/cars/
+Loaded 20 cars
+Car 1: ID=8459042, Driver=633142716, Model=2, Color=4
+Car 2: ID=6572047, Driver=456625863, Model=2, Color=6
+Car 3: ID=8024919, Driver=799119294, Model=4, Color=3
+
+🔄 Starting continuous data generation...
+Generating sensor data for 20 cars every second
+Press Ctrl+C to stop
+
+📤 Iteration 1: Sent 20 events to sensors-sample
+   Sample: Car 8459042 - Speed: 18, RPM: 1690, Gear: 5
+📤 Iteration 2: Sent 20 events to sensors-sample
+📤 Iteration 3: Sent 20 events to sensors-sample
+📤 Iteration 4: Sent 20 events to sensors-sample
+📤 Iteration 5: Sent 20 events to sensors-sample
+📤 Iteration 6: Sent 20 events to sensors-sample
+📤 Iteration 7: Sent 20 events to sensors-sample
+📤 Iteration 8: Sent 20 events to sensors-sample
+📤 Iteration 9: Sent 20 events to sensors-sample
+📤 Iteration 10: Sent 20 events to sensors-sample
+📤 Iteration 11: Sent 20 events to sensors-sample
+   Sample: Car 8459042 - Speed: 7, RPM: 3720, Gear: 5
+📤 Iteration 12: Sent 20 events to sensors-sample
+📤 Iteration 13: Sent 20 events to sensors-sample
+📤 Iteration 14: Sent 20 events to sensors-sample
+📤 Iteration 15: Sent 20 events to sensors-sample
+📤 Iteration 16: Sent 20 events to sensors-sample
+📤 Iteration 17: Sent 20 events to sensors-sample
+📤 Iteration 18: Sent 20 events to sensors-sample
+📤 Iteration 19: Sent 20 events to sensors-sample
+📤 Iteration 20: Sent 20 events to sensors-sample
+📤 Iteration 21: Sent 20 events to sensors-sample
+   Sample: Car 8459042 - Speed: 172, RPM: 1435, Gear: 1
+📤 Iteration 22: Sent 20 events to sensors-sample
+📤 Iteration 23: Sent 20 events to sensors-sample
+📤 Iteration 24: Sent 20 events to sensors-sample
+📤 Iteration 25: Sent 20 events to sensors-sample
+📤 Iteration 26: Sent 20 events to sensors-sample
+📤 Iteration 27: Sent 20 events to sensors-sample
+📤 Iteration 28: Sent 20 events to sensors-sample
+📤 Iteration 29: Sent 20 events to sensors-sample
+📤 Iteration 30: Sent 20 events to sensors-sample
+📤 Iteration 31: Sent 20 events to sensors-sample
+   Sample: Car 8459042 - Speed: 50, RPM: 3748, Gear: 2
+📤 Iteration 32: Sent 20 events to sensors-sample
+📤 Iteration 33: Sent 20 events to sensors-sample
+📤 Iteration 34: Sent 20 events to sensors-sample
+📤 Iteration 35: Sent 20 events to sensors-sample
+📤 Iteration 36: Sent 20 events to sensors-sample
+📤 Iteration 37: Sent 20 events to sensors-sample
+📤 Iteration 38: Sent 20 events to sensors-sample
+📤 Iteration 39: Sent 20 events to sensors-sample
+📤 Iteration 40: Sent 20 events to sensors-sample
+📤 Iteration 41: Sent 20 events to sensors-sample
+   Sample: Car 8459042 - Speed: 25, RPM: 2532, Gear: 1
+📤 Iteration 42: Sent 20 events to sensors-sample
+📤 Iteration 43: Sent 20 events to sensors-sample
+📤 Iteration 44: Sent 20 events to sensors-sample
+📤 Iteration 45: Sent 20 events to sensors-sample
+📤 Iteration 46: Sent 20 events to sensors-sample
+📤 Iteration 47: Sent 20 events to sensors-sample
+📤 Iteration 48: Sent 20 events to sensors-sample
+📤 Iteration 49: Sent 20 events to sensors-sample
+📤 Iteration 50: Sent 20 events to sensors-sample
+📤 Iteration 51: Sent 20 events to sensors-sample
+   Sample: Car 8459042 - Speed: 176, RPM: 3563, Gear: 3
+📤 Iteration 52: Sent 20 events to sensors-sample
+📤 Iteration 53: Sent 20 events to sensors-sample
+📤 Iteration 54: Sent 20 events to sensors-sample
+📤 Iteration 55: Sent 20 events to sensors-sample
+📤 Iteration 56: Sent 20 events to sensors-sample
+📤 Iteration 57: Sent 20 events to sensors-sample
+📤 Iteration 58: Sent 20 events to sensors-sample
+📤 Iteration 59: Sent 20 events to sensors-sample
+📤 Iteration 60: Sent 20 events to sensors-sample
+📤 Iteration 61: Sent 20 events to sensors-sample
+   Sample: Car 8459042 - Speed: 79, RPM: 7936, Gear: 4
+📤 Iteration 62: Sent 20 events to sensors-sample
+📤 Iteration 63: Sent 20 events to sensors-sample
+📤 Iteration 64: Sent 20 events to sensors-sample
+📤 Iteration 65: Sent 20 events to sensors-sample
+📤 Iteration 66: Sent 20 events to sensors-sample
+📤 Iteration 67: Sent 20 events to sensors-sample
+📤 Iteration 68: Sent 20 events to sensors-sample
+📤 Iteration 69: Sent 20 events to sensors-sample
+📤 Iteration 70: Sent 20 events to sensors-sample
+📤 Iteration 71: Sent 20 events to sensors-sample
+   Sample: Car 8459042 - Speed: 174, RPM: 2877, Gear: 1
+📤 Iteration 72: Sent 20 events to sensors-sample
+📤 Iteration 73: Sent 20 events to sensors-sample
+📤 Iteration 74: Sent 20 events to sensors-sample
+📤 Iteration 75: Sent 20 events to sensors-sample
+📤 Iteration 76: Sent 20 events to sensors-sample
+📤 Iteration 77: Sent 20 events to sensors-sample
+📤 Iteration 78: Sent 20 events to sensors-sample
+🛑 Stopping data generator for next stage...
+✅ Data generator stopped
