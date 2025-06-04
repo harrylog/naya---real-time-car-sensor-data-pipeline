@@ -12,7 +12,9 @@ import time
 import random
 import uuid
 from datetime import datetime
-
+import time
+start_time = time.time()
+max_runtime = 120  # 5 minutes
 def create_spark_session():
     """Create Spark session with Kafka support"""
     return SparkSession.builder \
@@ -117,6 +119,9 @@ def main():
             
             # Wait 1 second
             time.sleep(1)
+            if time.time() - start_time > max_runtime:
+                print("🛑 Stopping data generator for next stage...")
+                break
             
     except KeyboardInterrupt:
         print("\n🛑 Stopping data generator...")
