@@ -1,12 +1,12 @@
 #!/bin/bash
 # run_pipeline.sh - Submit Spark jobs via EMR Steps
 
-CLUSTER_ID="j-2YFRZWAYZH3SA"
-S3_BUCKET="spark-kafka-pipeline-zn1fp2wf"
+CLUSTER_ID="j-1TKO55XQ0OF3E"  # Your cluster ID
+S3_BUCKET="spark-kafka-pipeline-zn1fp2wf"  # Your bucket name
 
 echo "🚀 Submitting Data Generator to EMR..."
 
-# Submit Data Generator step (CORRECTED FORMAT)
+# Submit Data Generator step
 STEP_ID=$(aws emr add-steps --cluster-id $CLUSTER_ID --steps '[{
   "Name": "DataGenerator", 
   "ActionOnFailure": "CONTINUE",
@@ -21,20 +21,3 @@ STEP_ID=$(aws emr add-steps --cluster-id $CLUSTER_ID --steps '[{
 echo "✅ Step submitted: $STEP_ID"
 echo "📊 Monitor progress:"
 echo "   aws emr describe-step --cluster-id $CLUSTER_ID --step-id $STEP_ID"
-
-echo ""
-echo "🔍 Monitoring step status..."
-while true; do
-    STATUS=$(aws emr describe-step --cluster-id $CLUSTER_ID --step-id $STEP_ID --query 'Step.Status.State' --output text)
-    echo "   Status: $STATUS"
-    
-    if [ "$STATUS" = "COMPLETED" ]; then
-        echo "✅ Data Generator completed successfully!"
-        break
-    elif [ "$STATUS" = "FAILED" ] || [ "$STATUS" = "CANCELLED" ]; then
-        echo "❌ Data Generator failed. Check logs for details."
-        break
-    fi
-    
-    sleep 10
-done
