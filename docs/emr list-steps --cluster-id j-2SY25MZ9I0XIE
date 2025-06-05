@@ -1,0 +1,52 @@
+{
+    "Steps": [
+        {
+            "Id": "s-00339733IMXZDLOFFNG8",
+            "Name": "DataEnrichment",
+            "Config": {
+                "Jar": "command-runner.jar",
+                "Properties": {},
+                "Args": [
+                    "spark-submit",
+                    "--packages",
+                    "org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.0",
+                    "s3://spark-kafka-pipeline-zn1fp2wf/scripts/data_enrichment.py"
+                ]
+            },
+            "ActionOnFailure": "CONTINUE",
+            "Status": {
+                "State": "COMPLETED",
+                "StateChangeReason": {},
+                "Timeline": {
+                    "CreationDateTime": "2025-06-05T12:18:32.825000+03:00",
+                    "StartDateTime": "2025-06-05T12:18:46.193000+03:00",
+                    "EndDateTime": "2025-06-05T12:19:30.311000+03:00"
+                }
+            }
+        },
+        {
+            "Id": "s-0403235242G2KAOVDJQK",
+            "Name": "DataGenerator",
+            "Config": {
+                "Jar": "command-runner.jar",
+                "Properties": {},
+                "Args": [
+                    "spark-submit",
+                    "--packages",
+                    "org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.0",
+                    "s3://spark-kafka-pipeline-zn1fp2wf/scripts/data_generator.py"
+                ]
+            },
+            "ActionOnFailure": "CONTINUE",
+            "Status": {
+                "State": "COMPLETED",
+                "StateChangeReason": {},
+                "Timeline": {
+                    "CreationDateTime": "2025-06-05T12:13:02.532000+03:00",
+                    "StartDateTime": "2025-06-05T12:13:25.732000+03:00",
+                    "EndDateTime": "2025-06-05T12:15:46.142000+03:00"
+                }
+            }
+        }
+    ]
+}
