@@ -1,0 +1,57 @@
+hello to my  data eng and devops master, 
+
+so i ran terraform apply -target=module.msk -target=module.emr   
+
+the output is
+
+Apply complete! Resources: 12 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+bucket_name = "spark-kafka-pipeline-zn1fp2wf"
+
+car_colors_path = "s3a://spark-kafka-pipeline-zn1fp2wf/data/dims/car_colors/"
+
+car_models_path = "s3a://spark-kafka-pipeline-zn1fp2wf/data/dims/car_models/"
+
+cars_path = "s3a://spark-kafka-pipeline-zn1fp2wf/data/dims/cars/"
+
+emr_cluster_id = "j-2SY25MZ9I0XIE"
+
+emr_cluster_state = "WAITING"
+
+emr_master_dns = "ec2-52-55-23-84.compute-1.amazonaws.com"
+
+msk_connection_info = {
+
+  "bootstrap_servers" = "b-1.sparkkafkapipeline.44yvdh.c22.kafka.us-east-1.amazonaws.com:9092,b-2.sparkkafkapipeline.44yvdh.c22.kafka.us-east-1.amazonaws.com:9092"
+
+  "cluster_name" = "spark-kafka-pipeline"
+
+  "topics_needed" = [
+
+    "sensors-sample",
+
+    "samples-enriched",
+
+    "alert-data",
+
+  ]
+
+}
+
+attached are my current scripts for the stages 
+
+the s3 was not destryed by terraform, 
+
+based on the above 
+
+help me update specifically what i need in order to continue. 
+
+the order to scripts \emr steps to run, so i can start the next stage of alert detection. 
+
+i limited the data generation to 2 min so it will not block other steps. 
+
+how can i make sure topics are created and data in generated and enriched ? 
+
+please be concise,  you dont need to provide long or entire scripts, just the updated , fixex , commands and where to apply them 
