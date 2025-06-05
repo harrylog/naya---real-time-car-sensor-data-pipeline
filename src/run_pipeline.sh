@@ -1,7 +1,7 @@
 #!/bin/bash
 # run_pipeline.sh - Submit Spark jobs via EMR Steps
 
-CLUSTER_ID="j-1TKO55XQ0OF3E"  # Your cluster ID
+CLUSTER_ID="j-2SY25MZ9I0XIE"
 S3_BUCKET="spark-kafka-pipeline-zn1fp2wf"  # Your bucket name
 
 echo "🚀 Submitting Data Generator to EMR..."

@@ -92,7 +92,7 @@ def enrich_sensor_data(sensors_df, cars_df, models_df, colors_df):
 
 def main():
     # Configuration
-    KAFKA_SERVERS = "b-1.sparkkafkapipeline.l3k3m3.c22.kafka.us-east-1.amazonaws.com:9092,b-2.sparkkafkapipeline.l3k3m3.c22.kafka.us-east-1.amazonaws.com:9092"
+    KAFKA_SERVERS = "b-1.sparkkafkapipeline.44yvdh.c22.kafka.us-east-1.amazonaws.com:9092,b-2.sparkkafkapipeline.44yvdh.c22.kafka.us-east-1.amazonaws.com:9092"
     INPUT_TOPIC = "sensors-sample"
     OUTPUT_TOPIC = "samples-enriched"
     S3_BUCKET = "spark-kafka-pipeline-zn1fp2wf"
