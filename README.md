@@ -2,7 +2,7 @@
 
 Real-time car sensor monitoring system using PySpark, Kafka, and AWS services.
 
-## 🎯 Overview
+##  Overview
 
 Fleet management pipeline that:
 - Generates real-time car sensor data
@@ -10,7 +10,7 @@ Fleet management pipeline that:
 - Detects driving alerts (speeding, wrong gear, high RPM)
 - Provides real-time aggregations
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 S3 (Cars) → PySpark → Kafka (sensors) → PySpark → Kafka (enriched) → PySpark → Console (alerts)
