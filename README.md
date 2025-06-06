@@ -92,7 +92,7 @@ aws emr describe-step --cluster-id j-XXXXX --step-id s-XXXXX
 # Or via AWS Console: EMR → Cluster → Steps → Click step → stdout
 ```
 
-## 📊 Expected Results & Screenshots
+##  Expected Results & Screenshots
 
 ### Data Generator Success:
 ```
@@ -104,9 +104,9 @@ Iteration 1: Sent 20 events to sensors-sample
 
 ### Data Enrichment Success:
 ```
-🔧 Starting Data Enrichment...
+ Starting Data Enrichment...
 Loaded dimension tables: Cars: 20, Models: 7, Colors: 7
-📊 Data enrichment streaming started...
+ Data enrichment streaming started...
 ```
 
 ### Kafka Topic Data (from TopicViewer):
@@ -150,7 +150,7 @@ terraform destroy -target=module.emr -target=module.msk
 terraform apply -target=module.msk -target=module.emr
 ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 spark-kafka-pipeline/
