@@ -2,7 +2,7 @@
 
 Real-time car sensor monitoring system using PySpark, Kafka, and AWS services.
 
-## 🎯 Overview
+## Overview
 
 Fleet management pipeline that:
 - Generates real-time car sensor data (20 cars, 20 events/second)
@@ -10,7 +10,7 @@ Fleet management pipeline that:
 - Detects driving alerts (speeding, wrong gear, high RPM)
 - Provides real-time aggregations and monitoring
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 S3 (Cars) → PySpark → Kafka (sensors) → PySpark → Kafka (enriched) → PySpark → Console (alerts)
@@ -18,7 +18,7 @@ S3 (Cars) → PySpark → Kafka (sensors) → PySpark → Kafka (enriched) → P
 
 **Tech Stack**: EMR (PySpark), MSK (Kafka), S3, Terraform
 
-## 🚀 Complete Setup Guide
+## Complete Setup Guide
 
 ### Prerequisites
 ```bash
@@ -96,9 +96,9 @@ aws emr describe-step --cluster-id j-XXXXX --step-id s-XXXXX
 
 ### Data Generator Success:
 ```
-🚗 Starting Data Generator...
+ Starting Data Generator...
 Loaded 20 cars
-📤 Iteration 1: Sent 20 events to sensors-sample
+Iteration 1: Sent 20 events to sensors-sample
    Sample: Car 8459042 - Speed: 173, RPM: 5878, Gear: 6
 ```
 
@@ -115,7 +115,7 @@ Loaded dimension tables: Cars: 20, Models: 7, Colors: 7
 {"event_id":"uuid456","car_id":6572047,"speed":85,"rpm":3200,"gear":3}
 ```
 
-**📸 Screenshots available in `/docs` directory:**
+** Screenshots available in `/docs` directory:**
 - EMR cluster status and step execution
 - Pipeline output logs with data generation
 - Kafka topic viewer showing JSON messages
@@ -130,7 +130,7 @@ Loaded dimension tables: Cars: 20, Models: 7, Colors: 7
 | No data in TopicViewer  | Verify KAFKA_SERVERS in scripts match terraform output              |
 | EMR step fails          | Check IAM permissions and security groups                           |
 
-## 💰 Cost Management
+## Cost Management
 
 **Daily Costs:**
 - EMR m5.xlarge: ~$23/day (when running)
@@ -170,7 +170,7 @@ spark-kafka-pipeline/
 └── README.md
 ```
 
-## 🎯 Learning Outcomes
+##  Learning Outcomes
 
 **Technical Skills Demonstrated:**
 - Infrastructure as Code with Terraform modules
@@ -188,4 +188,4 @@ spark-kafka-pipeline/
 
 ---
 
-**🚀 Ready for production data engineering roles!**
+** Ready for production data engineering roles!**
