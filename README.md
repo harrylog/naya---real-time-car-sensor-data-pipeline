@@ -121,7 +121,7 @@ Loaded dimension tables: Cars: 20, Models: 7, Colors: 7
 - Kafka topic viewer showing JSON messages
 - End-to-end data flow verification
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 | Issue                   | Solution                                                            |
 | ----------------------- | ------------------------------------------------------------------- |
