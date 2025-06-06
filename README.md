@@ -121,15 +121,6 @@ Loaded dimension tables: Cars: 20, Models: 7, Colors: 7
 - Kafka topic viewer showing JSON messages
 - End-to-end data flow verification
 
-##  Troubleshooting
-
-| Issue                   | Solution                                                            |
-| ----------------------- | ------------------------------------------------------------------- |
-| Step won't start        | Check previous step is COMPLETED                                    |
-| "Offset changed" errors | Clear checkpoints: `aws s3 rm s3://bucket/checkpoints/ --recursive` |
-| No data in TopicViewer  | Verify KAFKA_SERVERS in scripts match terraform output              |
-| EMR step fails          | Check IAM permissions and security groups                           |
-
 ## Cost Management
 
 **Daily Costs:**
